@@ -30,7 +30,7 @@ HA = {
 } 
 #Hydrophobicity scale of individual residue
 		
-df = pd.read_csv('/home/sharayu/Downloads/menv-server-master/1.csv', sep="\t")
+df = pd.read_csv('/home/sharayu/Downloads/menv-server-master/file.txt', sep="\t")
 df.head()
 
 residue = HA.keys()
