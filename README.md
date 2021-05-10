@@ -17,7 +17,7 @@ standalone.tcl, newrenumber.sh, del_G, temp-psfgen-scripts.tcl
 5. Download the necessary libraries
 .......................................................................................................................
 6. Once the file directory is changed, it is required the acivate the executable as follows:
-chmod +x path/psfgen..; micro_debug_
+chmod +x /path/psfgen and similarly; chmod +x /path/micro_debug_
 7. compile the following programs
 using comand line: gfortran -O2 -o psfpdb-crd-conv2 psfpdb-crd-conv2.f
 similarly, gfortran -O2 -o ssbond.exe ssbond-detect.f
