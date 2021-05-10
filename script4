@@ -28,7 +28,7 @@ sed s/"$v2,  CYS,       2,  TO,"/"$v2,  CYS,       2,  TD,"/ $menv >temp2
 cp temp2 $menv
 end
 sh /home/sharayu/Downloads/menv-server-master/newrenumber.sh $v $menv
-paste -d "		" *-new.menv > merge.txt
+paste *-new.menv > merge.txt
 sed -i 's/\,/ /g' merge.txt
 awk -v OFS='\t' 'BEGIN{printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "res_num", "pdb_id1", "chain_id", "res_name", "rHpy1", "res_num", "pdb_id2", "chain_id", "res_name", "rHpy2"} {printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", $3, $1, $2, $4, $10, $13, $11, $12, $14, $20}' merge.txt > file.txt
 #python3 /home/sharayu/Downloads/menv-server-master/del_G.py
