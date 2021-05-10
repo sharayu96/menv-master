@@ -11,13 +11,13 @@ yyyy.pdb
 3. Download and store only two pdb files in the same directory (in case you have more than two PDB files those will be merged together and produce wrong results)
 4. preprocessing will be done in next few steps
 a. user has to change the directory names, as given in line 14
-subsequently change the directory names in the lines 16, 17, 20, 21, 24, 30 and 34 after downloading the files on your local machine
+subsequently change the directory names in the lines 14, 16, 17, 20, 21, 24, 30 and 34 (of script4) after downloading the files on your local machine
 b. change the directories for the following files:
 standalone.tcl, newrenumber.sh, del_G, temp-psfgen-scripts.tcl
 5. Download the necessary libraries
 .......................................................................................................................
 6. Once the file directory is changed, it is required the acivate the executable as follows:
-chmod +x path/psfgen..; micro_debug
+chmod +x path/psfgen..; micro_debug_
 7. compile the following programs
 using comand line: gfortran -O2 -o psfpdb-crd-conv2 psfpdb-crd-conv2.f
 similarly, gfortran -O2 -o ssbond.exe ssbond-detect.f
