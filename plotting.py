@@ -31,8 +31,8 @@ if no_of_chains < 5:
                     listx.append(re.sub('[a-zA-Z]+','',tok[2]))
                     listy.append(tok[9])
         f.close()
-        xDict[item] = np.asarray(listx).astype(np.float)
-        yDict[item] = np.asarray(listy).astype(np.float)    
+        xDict[item] = np.asarray(listx).astype(np.float64)
+        yDict[item] = np.asarray(listy).astype(np.float64)    
 
     number_of_subplots = no_of_chains
 
@@ -79,8 +79,8 @@ elif 4 < no_of_chains < 10:
     				listx.append(re.sub('[a-zA-Z]+','',tok[2]))
     				listy.append(tok[9])
     	f.close()
-    	xDict[item] = np.asarray(listx).astype(np.float)
-    	yDict[item] = np.asarray(listy).astype(np.float)	
+    	xDict[item] = np.asarray(listx).astype(np.float64)
+    	yDict[item] = np.asarray(listy).astype(np.float64)	
 
     number_of_subplots = no_of_chains
 
@@ -129,8 +129,8 @@ elif 9 < no_of_chains < 13:
                     listx.append(re.sub('[a-zA-Z]+','',tok[2]))
                     listy.append(tok[9])
         f.close()
-        xDict[item] = np.asarray(listx).astype(np.float)
-        yDict[item] = np.asarray(listy).astype(np.float)    
+        xDict[item] = np.asarray(listx).astype(np.float64)
+        yDict[item] = np.asarray(listy).astype(np.float64)    
 
     number_of_subplots = no_of_chains
 
@@ -180,8 +180,8 @@ else :
                     listx.append(re.sub('[a-zA-Z]+','',tok[2]))
                     listy.append(tok[9])
         f.close()
-        xDict[item] = np.asarray(listx).astype(np.float)
-        yDict[item] = np.asarray(listy).astype(np.float)    
+        xDict[item] = np.asarray(listx).astype(np.float64)
+        yDict[item] = np.asarray(listy).astype(np.float64)    
 
     number_of_subplots = no_of_chains
 
