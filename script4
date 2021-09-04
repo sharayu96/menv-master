@@ -1,0 +1,36 @@
+#! /bin/csh -f
+#
+#       script to generate crd files from pdb files using simulaid
+#
+	foreach v (`cat list`)
+        echo $v
+        set psf = `echo $v:r`-psf
+        set psf2 = $psf.pdb
+        set menv = `echo $psf:r`.menv
+        set crd  = `echo $psf:r`.crd
+        set out = `echo $psf:r`.out
+        set newmenv = `echo $v:r`-new.menv
+        cp $v temp
+/home/leucine/Downloads/menv-server-master-main/psfgen /home/leucine/Downloads/menv-server-master-main/psf-pdb-gen-standalone.tcl $v $psf
+set atomnum = `grep "ATOM" $psf2 | wc | awk '{print $1}'`
+/home/leucine/Downloads/menv-server-master-main/psfpdb-crd-conv2 $psf2 $crd $atomnum
+/home/leucine/Downloads/menv-server-master-main/micro_debug_<<fin>$out
+CHM
+$crd
+/home/leucine/Downloads/menv-server-master-main/esp_all_env_allradii.dat
+/home/leucine/Downloads/menv-server-master-main/smenv_allh.dat
+$menv
+fin
+/home/leucine/Downloads/menv-server-master-main/ssbond.exe < $crd
+foreach v2 ( `cat num` )
+echo $v2
+sed s/"$v2,  CYS,       2,  TO,"/"$v2,  CYS,       2,  TD,"/ $menv >temp2
+cp temp2 $menv
+end
+sh /home/leucine/Downloads/menv-server-master-main/newrenumber.sh $v $menv
+paste *-new.menv > merge.txt
+sed -i 's/\,/ /g' merge.txt
+awk -v OFS='\t' 'BEGIN{printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "res_num", "pdb_id1", "chain_id", "res_name", "rHpy1", "res_num", "pdb_id2", "chain_id", "res_name", "rHpy2"} {printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", $3, $1, $2, $4, $10, $13, $11, $12, $14, $20}' merge.txt > file.txt
+python3 /home/leucine/Downloads/menv-server-master-main/plotting.py $newmenv
+end
+python3 /home/leucine/Downloads/menv-server-master-main/del_G.py
