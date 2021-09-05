@@ -2,6 +2,9 @@
 #
 #       script to generate crd files from pdb files using simulaid
 #
+
+python3 /home/leucine/Downloads/menv-server-master-main/rename.py
+
 	foreach v (`cat list`)
         echo $v
         set psf = `echo $v:r`-psf
@@ -28,9 +31,9 @@ sed s/"$v2,  CYS,       2,  TO,"/"$v2,  CYS,       2,  TD,"/ $menv >temp2
 cp temp2 $menv
 end
 sh /home/leucine/Downloads/menv-server-master-main/newrenumber.sh $v $menv
-paste *-new.menv > merge.txt
-sed -i 's/\,/ /g' merge.txt
-awk -v OFS='\t' 'BEGIN{printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "res_num", "pdb_id1", "chain_id", "res_name", "rHpy1", "res_num", "pdb_id2", "chain_id", "res_name", "rHpy2"} {printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", $3, $1, $2, $4, $10, $13, $11, $12, $14, $20}' merge.txt > file.txt
 python3 /home/leucine/Downloads/menv-server-master-main/plotting.py $newmenv
 end
+paste a-new.menv b-new.menv > merge.txt
+sed -i 's/\,/ /g' merge.txt
+awk -v OFS='\t' 'BEGIN{printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", "res_num", "pdb_id1", "chain_id", "res_name", "rHpy1", "res_num", "pdb_id2", "chain_id", "res_name", "rHpy2"} {printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", $3, $1, $2, $4, $10, $13, $11, $12, $14, $20}' merge.txt > file.txt
 python3 /home/leucine/Downloads/menv-server-master-main/del_G.py
